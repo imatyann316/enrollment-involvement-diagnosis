@@ -1,0 +1,5 @@
+qa/
+*.zip
+*.html
+!index.html
+build_standalone.py

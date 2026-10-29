@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>あなたの巻き込み方は？｜4タイプ診断</title>
+  <meta name="description" content="8つの問いから、仲間を巻き込むときに発揮しやすい強みを整理するセルフチェックです。">
+  <style>
+    :root { --ink:#183328; --muted:#5e7268; --paper:#f7f6f0; --card:#fffefa; --line:#dce4dd; --green:#176548; --green-deep:#10402f; --lime:#b7d94a; --lime-pale:#eff7d7; --coral:#e77651; --shadow:0 20px 55px rgba(22,61,43,.13); }
+    * { box-sizing:border-box; } html { scroll-behavior:smooth; } body { margin:0; color:var(--ink); background:linear-gradient(140deg,#eef3eb 0%,#f8f6ef 45%,#e6f0e7 100%); font-family:"Hiragino Sans","Yu Gothic",Meiryo,sans-serif; line-height:1.7; }
+    body::before { content:""; position:fixed; width:52vw; height:52vw; right:-24vw; top:-30vw; border-radius:50%; background:radial-gradient(circle,#c5df67 0%,rgba(197,223,103,0) 68%); opacity:.32; z-index:-1; }
+    .wrap { width:min(100% - 32px,790px); margin:auto; padding:54px 0 38px; }
+    .hero { max-width:680px; margin:0 auto 30px; text-align:center; } .eyebrow { display:inline-block; color:var(--green); font-weight:800; letter-spacing:.13em; font-size:.78rem; } h1 { margin:10px 0 14px; font-size:clamp(2rem,6vw,3.35rem); letter-spacing:-.055em; line-height:1.18; text-wrap:pretty; } .lead { margin:0 auto; max-width:620px; color:var(--muted); font-size:1rem; }
+    .promise { display:flex; gap:13px; align-items:flex-start; max-width:650px; margin:24px auto 0; padding:15px 17px; color:#24503d; background:rgba(255,255,255,.73); border:1px solid #d5e2d7; border-radius:16px; text-align:left; font-size:.9rem; } .promise b { color:var(--green); white-space:nowrap; }
+    .quiz-card,.result { overflow:hidden; border:1px solid var(--line); border-radius:24px; background:var(--card); box-shadow:var(--shadow); } .quiz-top { padding:21px 25px 17px; border-bottom:1px solid var(--line); } .counter { color:var(--muted); font-size:.82rem; font-weight:800; letter-spacing:.08em; } .progress { height:6px; margin-top:12px; overflow:hidden; border-radius:99px; background:#e5ece7; } .progress span { display:block; height:100%; border-radius:inherit; background:linear-gradient(90deg,var(--green),#6da444); transition:width .24s ease; }
+    .question { padding:31px 25px 26px; } .q-label { color:var(--green); font-size:.75rem; font-weight:900; letter-spacing:.15em; } h2 { margin:6px 0 22px; font-size:clamp(1.25rem,4.1vw,1.68rem); line-height:1.5; letter-spacing:-.025em; text-wrap:pretty; } .choices { display:grid; gap:11px; } button { font:inherit; } .choice { display:flex; width:100%; min-height:64px; gap:13px; align-items:center; padding:12px 14px; color:var(--ink); border:1.5px solid #d9e1db; border-radius:15px; background:#fff; text-align:left; cursor:pointer; transition:transform .15s ease,border .15s ease,background .15s ease; } .choice:hover { transform:translateY(-1px); border-color:#87b69c; background:#fbfef9; } .choice:focus-visible { outline:3px solid rgba(183,217,74,.75); outline-offset:2px; } .choice.selected { border-color:var(--green); background:var(--lime-pale); box-shadow:inset 0 0 0 1px var(--green); } .choice-key { display:grid; flex:0 0 32px; width:32px; height:32px; place-items:center; border-radius:50%; color:#fff; background:var(--green); font-weight:900; } .choice span:last-child { font-size:.96rem; line-height:1.55; }
+    .actions { display:flex; justify-content:space-between; gap:12px; margin-top:24px; } .btn { min-height:46px; padding:10px 17px; border:0; border-radius:11px; cursor:pointer; font-weight:850; } .btn.secondary { color:var(--green); background:#eaf1eb; } .btn.primary { color:white; background:var(--green); } .btn:disabled { cursor:not-allowed; opacity:.42; } .result { display:none; } .result.show { display:block; animation:up .3s ease; } @keyframes up { from { opacity:0; transform:translateY(12px) } to { opacity:1; transform:translateY(0) } }
+    .result-head { padding:33px 26px; color:white; background:linear-gradient(135deg,var(--green-deep),var(--green)); } .result-head .eyebrow { color:#d8ef8a; } .result-head h2 { margin:7px 0 0; font-size:clamp(1.8rem,6vw,2.75rem); line-height:1.22; } .result-body { padding:28px 26px 30px; } .result-body h3 { margin:23px 0 6px; color:var(--green); font-size:.9rem; letter-spacing:.1em; } .result-body p { margin:0; } .insight { padding:16px; border-radius:15px; background:#f1f6e9; } .counts { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin-top:10px; } .count { padding:10px 4px; border-radius:12px; background:#f5f7f4; text-align:center; } .count b { display:block; color:var(--green); font-size:1.12rem; line-height:1.1; }.count small { color:var(--muted); font-size:.68rem; }
+    .guide { margin-top:25px; padding:21px; border:1px solid #d8e4d5; border-radius:18px; background:rgba(255,255,255,.62); } .guide h3 { margin:0 0 7px; color:var(--green); font-size:1rem; } .guide p { margin:0; color:var(--muted); font-size:.88rem; } footer { margin-top:26px; color:var(--muted); text-align:center; font-size:.75rem; }
+    @media (max-width:520px) { .wrap { width:min(100% - 22px,790px); padding-top:32px; } .quiz-top,.question,.result-body { padding-left:18px; padding-right:18px; } .result-head { padding:27px 19px; } .choice { min-height:70px; } .counts { grid-template-columns:repeat(2,1fr); } }
+    @media (prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto!important; transition:none!important; animation:none!important; } }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header class="hero">
+      <span class="eyebrow">ENROLLMENT SELF CHECK</span>
+      <h1>あなたの巻き込み方は？<br>4タイプ診断</h1>
+      <p class="lead">仲間が未来を自分ごとにして動き出すために。8つの問いから、あなたが発揮しやすい「巻き込みの強み」を整理します。</p>
+      <div class="promise"><b>大切にすること</b><span>誰かを動かす診断ではなく、相手の意思と可能性を尊重しながら、一緒に前へ進むためのセルフチェックです。</span></div>
+    </header>
+    <section class="quiz-card" id="quiz" aria-live="polite">
+      <div class="quiz-top"><span class="counter" id="counter">QUESTION 1 / 8</span><div class="progress"><span id="bar" style="width:0%"></span></div></div>
+      <div class="question" id="question"></div>
+    </section>
+    <section class="result" id="result" aria-live="polite"></section>
+    <section class="guide"><h3>この診断の使い方</h3><p>これは能力の優劣ではなく、あなたが巻き込みの場面で選びやすい関わり方を見るものです。結果をチーム内の対話の入口として使ってください。</p></section>
+    <footer>※医療・心理の診断ではありません。エンロールメント／チームづくりを見つめるためのセルフチェックです。</footer>
+  </main>
+<script type="module">
+import { diagnose, shuffleChoices, TYPES } from './scoring.js';
+const questions = [
+ ['新しい挑戦をチームへ提案するとき、最初に大切にするのは？', [['A','実現した先に、私たちやお客様にどんな未来があるかを描く'],['B','一人ひとりが感じている期待や不安を、まず丁寧に聴く'],['C','目的・役割・任せられる範囲を整理して共有する'],['D','まず小さく動き、手応えをつくって前に進める']]],
+ ['会議で意見が割れ、話が止まりそうなときは？', [['A','全員が共通して目指しているゴールへ、話を戻す'],['B','それぞれの意見の背景を聞き、違いを言葉にする'],['C','判断に必要な条件と、決める期限を整える'],['D','いったん試す案を決め、動きながら確かめる']]],
+ ['仲間へ仕事を任せるとき、あなたが最初に伝えやすいのは？', [['A','この仕事が実現すると、誰にどんな価値が届くか'],['B','あなた自身は、この役割をどう感じているか'],['C','目的・完了の形・判断してよい範囲'],['D','まずここまでやってみよう、という最初の一手']]],
+ ['メンバーの温度差を感じたとき、どう関わる？', [['A','なぜ今この挑戦をするのか、背景と意味を語り直す'],['B','置いていかれている人がいないか、個別にも声をかける'],['C','情報や役割に偏りがないか、進め方を見直す'],['D','一緒に行動できる小さな機会をつくる']]],
+ ['あなたが「チームが動き始めた」と感じる瞬間は？', [['A','仲間が自分の言葉で、目指す未来を語り始めたとき'],['B','普段発言しない人も、安心して本音を出したとき'],['C','確認を待たずに、仲間が判断して進められたとき'],['D','止まっていた企画が、具体的な一歩として走り始めたとき']]],
+ ['うまくいかなかった企画を振り返るとき、最初に見るのは？', [['A','そもそも、みんなが目指す意味を共有できていたか'],['B','誰かが言いにくいことを抱え込んでいなかったか'],['C','役割・権限・判断基準が曖昧でなかったか'],['D','検討に時間をかけすぎて、動く機会を逃していないか']]],
+ ['新しいメンバーが入ってきたとき、最初に届けたいものは？', [['A','このチームが実現したい未来と、あなたが担える可能性'],['B','あなたのままで話してよい、という安心感'],['C','迷わず動けるように、目的と進め方の全体像'],['D','早く仲間になれるように、一緒に取り組む小さな実践']]],
+ ['あなたが仲間を巻き込む上で、これから伸ばしたいことは？', [['A','未来をもっと具体的に語り、共感を生むこと'],['B','違いを活かしながら、本音で話せる関係をつくること'],['C','人が自ら判断し、進められる仕組みをつくること'],['D','考えるだけで終わらず、最初の一歩を増やすこと']]],
+];
+let step=0; const answers=[]; const $=(id)=>document.getElementById(id);
+function render(){
+ const [title, choices] = questions[step]; const shown=shuffleChoices(choices); const last=step===questions.length-1;
+ $('counter').textContent=`QUESTION ${step+1} / ${questions.length}`; $('bar').style.width=`${(step/questions.length)*100}%`;
+ $('question').innerHTML=`<div class="q-label">巻き込みの現在地</div><h2>${title}</h2><div class="choices">${shown.map(([key,text])=>`<button class="choice ${answers[step]===key?'selected':''}" data-choice="${key}"><span class="choice-key">${key}</span><span>${text}</span></button>`).join('')}</div><div class="actions"><button class="btn secondary" id="back" ${step===0?'disabled':''}>← 戻る</button>${last?'<button class="btn primary" id="finish" '+(answers.length===8?'':'disabled')+'>診断結果を見る</button>':'<button class="btn primary" id="next" '+(answers[step]?'':'disabled')+'>次へ →</button>'}</div>`;
+ document.querySelectorAll('[data-choice]').forEach((button)=>button.addEventListener('click',()=>{answers[step]=button.dataset.choice; render();}));
+ $('back').addEventListener('click',()=>{ if(step>0){step-=1;render();} });
+ if(last) $('finish').addEventListener('click',showResult); else $('next').addEventListener('click',()=>{ if(answers[step]){step+=1;render();} });
+}
+function showResult(){
+ const result=diagnose(answers); const tie=result.tiedKeys.length>1 ? `<p class="insight">今回は <b>${result.tiedKeys.map((key)=>TYPES[key].name).join('・')}</b> の要素が同じくらい出ています。まずは表示されたタイプを軸に、ほかの強みも組み合わせて使ってみてください。</p>` : '';
+ $('quiz').style.display='none'; $('bar').style.width='100%';
+ $('result').innerHTML=`<div class="result-head"><span class="eyebrow">YOUR INVOLVEMENT STYLE</span><h2>${result.type.name}</h2><p>${result.type.catch}</p></div><div class="result-body"><h3>あなたの強み</h3><p>${result.type.strength}</p><h3>気をつけたい落とし穴</h3><p>${result.type.blindSpot}</p><h3>次の一手</h3><p class="insight">${result.type.next}</p>${tie}<h3>回答の内訳</h3><div class="counts">${Object.entries(result.counts).map(([key,count])=>`<div class="count"><b>${count}</b><small>${TYPES[key].name}</small></div>`).join('')}</div><div class="actions"><button class="btn secondary" id="retry">もう一度診断する</button><button class="btn primary" id="copy">結果をコピー</button></div></div>`;
+ $('result').classList.add('show'); $('retry').addEventListener('click',()=>{answers.length=0;step=0;$('result').classList.remove('show');$('quiz').style.display='block';render();window.scrollTo({top:0,behavior:'smooth'});});
+ $('copy').addEventListener('click',async()=>{const text=`私の巻き込み方は「${result.type.name}」\n${result.type.catch}\n\n強み：${result.type.strength}\n次の一手：${result.type.next}`;try{await navigator.clipboard.writeText(text);$('copy').textContent='コピーしました！';}catch{$('copy').textContent='コピーできませんでした';}});
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+render();
+</script>
+</body>
+</html>
